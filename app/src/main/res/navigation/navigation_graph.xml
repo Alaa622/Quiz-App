@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/startFragment">
+
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.quizapplication.view.AboutFragment"
+        android:label="About"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/gameOverFragment"
+        android:name="com.example.quizapplication.view.GameOverFragment"
+        android:label="Game Over"
+        tools:layout="@layout/fragment_game_over">
+        <action
+            android:id="@+id/action_gameOverFragment_to_questionsFragment"
+            app:destination="@id/questionsFragment"
+            app:popUpTo="@id/questionsFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="numCorrect"
+            app:argType="integer" />
+        <argument
+            android:name="numWrong"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/questionsFragment"
+        android:name="com.example.quizapplication.view.QuestionsFragment"
+        android:label="Questions"
+        tools:layout="@layout/fragment_questions">
+        <action
+            android:id="@+id/action_questionsFragment_to_winFragment"
+            app:destination="@id/winFragment"
+            app:popUpTo="@id/questionsFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_questionsFragment_to_gameOverFragment"
+            app:destination="@id/gameOverFragment"
+            app:popUpTo="@id/questionsFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_questionsFragment_to_startFragment"
+            app:destination="@id/startFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="com.example.quizapplication.view.StartFragment"
+        android:label="Quiz"
+        tools:layout="@layout/fragment_start">
+        <action
+            android:id="@+id/action_startFragment_to_questionsFragment"
+            app:destination="@id/questionsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/winFragment"
+        android:name="com.example.quizapplication.view.WinFragment"
+        android:label="Congrats"
+        tools:layout="@layout/fragment_win">
+        <action
+            android:id="@+id/action_winFragment_to_questionsFragment"
+            app:destination="@id/questionsFragment"
+            app:popUpTo="@id/questionsFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="numCorrect"
+            app:argType="integer" />
+        <argument
+            android:name="numWrong"
+            app:argType="integer" />
+    </fragment>
+</navigation>
